@@ -2,6 +2,9 @@ var BasicBody = Koi.define({
 	ctx: 	   null,
 	canvas:    null,
 	name:      null,
+	h:  null, // dimentions
+	w:  null,
+	r:  null, // radius
 	x:  null, // position
 	y:  null,
 	vx: null, // velocity
@@ -21,6 +24,8 @@ var BasicBody = Koi.define({
 		this.canvas = options.canvas  || defaultCanvas;
 		this.ctx    = options.ctx     || defaultContext;
 		this.name   = options.name    || 'Unnamed Drawable';
+		this.h  	= options.h  || 0;
+		this.w  	= options.w  || 0;
 		this.y  	= options.y  || 0;
 		this.ay 	= options.ay || 0;
 		this.vy 	= options.vy || 0;

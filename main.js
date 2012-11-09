@@ -1,9 +1,14 @@
 var Pong = Koi.define({
-    canvas: null, // the canvas element
-    timer:  null, // the interval timer
+    canvas: null,  // the canvas element
+    timer:  null,  // the interval timer
     paused: false, // whether or not the game is paused
+    paddles: {},   // whether or not the game is paused
     
     init: function() {
+				this.paddles = {
+					'left'  : new Paddle({x: 20 , y:20, name: 'left' }),
+					'right' : new Paddle({x: 260, y:20, name: 'right' }),
+				}
         this.registerEvents();
         this.resume();
     },
@@ -65,7 +70,10 @@ var Pong = Koi.define({
     },
     
     gameLoop: function() {
-        console.log('game timer');
+			for(var i in this.paddles){
+				this.paddles[i].draw();
+			}
+			console.log('game timer');
     }
 });
 
