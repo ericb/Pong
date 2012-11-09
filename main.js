@@ -6,9 +6,11 @@ var Pong = Koi.define({
     
     init: function() {
 				this.paddles = {
-					'left'  : new Paddle({x: 20 , y:20, name: 'left' }),
-					'right' : new Paddle({x: 260, y:20, name: 'right' }),
+					'left'  : new Paddle({x: 25 , y:20, h: 75, w: 25, name: 'left' }),
+					'right' : new Paddle({x: 250, y:20, h: 75, w: 25, name: 'right' }),
 				}
+				this.paddles['left'].draw();
+				this.paddles['right'].draw();
         this.registerEvents();
         this.resume();
     },
