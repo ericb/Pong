@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #2b2b2b;
+}
+
+#header {
+    background-color: #333;
+    border-bottom: 1px solid #444;
+    padding: 50px 50px 10px 50px;
+    margin-bottom: 50px;
+}
+
+#header h1 {
+    color: #00e1ff;
+    font-family: sans-serif;
+    margin: 0px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#header p {
+    padding-top: 0px;
+    margin-top: 0px;
+    color: #777;
+    font-family: sans-serif;
+    font-size: 11px;
+    width: 500px;
+}
