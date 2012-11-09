@@ -41,7 +41,20 @@ var Pong = Koi.define({
     
     handleKeyboardEvent: function(e) {
         
-        console.log(e.keyCode);
+        var preventDefault = function(e) {
+            e.returnValue = false;
+            e.cancelBubble = true;
+            if(e.preventDefault) {
+                e.preventDefault();
+            }
+            if(e.stopPropagation) {
+                e.stopPropagation();
+            }
+            return false;
+        }
+        
+        var prevent = false;
+        
         switch(e.keyCode) {
             case 13: // enter key
                 if(this.paused) { 
@@ -49,33 +62,26 @@ var Pong = Koi.define({
                 } else {
                     this.pause();
                 }
+                prevent = true;
                 break;
             
             case 38: // up key
             case 37: // left key
-                //console.log('left');
                 this.paddles.left.setAccel(0, -5);
-                //console.log(this.paddles.left.vx);
+                prevent = true;
                 break;
                 
             case 40: // down key
             case 39: // right key
-                //console.log('right');
                 this.paddles.left.setAccel(0, 5);
+                prevent = true;
                 break;
-                
-            default: 
-                console.log(e.keyCode);
         }
-        e.returnValue = false;
-        e.cancelBubble = true;
-        if(e.preventDefault) {
-            e.preventDefault();
+        
+        if(prevent) {
+            preventDefault(e);
         }
-        if(e.stopPropagation) {
-            e.stopPropagation();
-        }
-        return false;
+        
     },
     
     gameLoop: function() {

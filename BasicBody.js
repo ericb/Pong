@@ -13,7 +13,9 @@ var BasicBody = Koi.define({
 	ay: null,
 	k:  null, // dampening
 	f:  null, // friction
-  
+    bx: null, // canvas boundaries
+    by: null,
+    
 	init: function(options) {
 		options       = options 	  || {};
 
@@ -35,6 +37,13 @@ var BasicBody = Koi.define({
 		this.vx 	= options.vx || 0;
 		this.k  	= options.k  || .93;
 		this.f  	= options.f  || .6;
+		this.bx     = {};
+		this.bx.min = 0;
+		this.bx.max = this.canvas.width;
+		
+		this.by     = {};
+		this.by.min = 0;
+		this.by.max = this.canvas.height;
 	},
 
 	setAccel: function(ax, ay){
