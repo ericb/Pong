@@ -51,11 +51,13 @@ var Pong = Koi.define({
                 }
                 break;
             
+            case 38: // up key
             case 37: // left key
                 console.log('left');
                 this.paddles.left.y -= 1;
                 break;
                 
+            case 40: // down key
             case 39: // right key
                 console.log('right');
                 this.paddles.left.y += 1;
