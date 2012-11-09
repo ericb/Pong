@@ -53,14 +53,15 @@ var Pong = Koi.define({
             
             case 38: // up key
             case 37: // left key
-                console.log('left');
-                this.paddles.left.y -= 1;
+                //console.log('left');
+                this.paddles.left.setAccel(0, -4);
+                //console.log(this.paddles.left.vx);
                 break;
                 
             case 40: // down key
             case 39: // right key
-                console.log('right');
-                this.paddles.left.y += 1;
+                //console.log('right');
+                this.paddles.left.setAccel(0, 4);
                 break;
                 
             default: 
@@ -82,7 +83,7 @@ var Pong = Koi.define({
 			for(var i in this.paddles){
 				this.paddles[i].draw();
 			}
-			console.log('game timer', this.paddles.left.x);
+			//console.log('game timer', this.paddles.left.x);
     }
 });
 

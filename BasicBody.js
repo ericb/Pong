@@ -12,6 +12,7 @@ var BasicBody = Koi.define({
 	ax: null, // acceleration
 	ay: null,
 	k:  null, // dampening
+	f:  null, // friction
   
 	init: function(options) {
 		options       = options 	  || {};
@@ -32,7 +33,8 @@ var BasicBody = Koi.define({
 		this.x  	= options.x  || 0;
 		this.ax 	= options.ax || 0;
 		this.vx 	= options.vx || 0;
-		this.k  	= options.k  || 0;
+		this.k  	= options.k  || .8;
+		this.f  	= options.f  || .8;
 	},
 
 	setAccel: function(ax, ay){
@@ -55,6 +57,8 @@ var BasicBody = Koi.define({
 		this.ay *= this.k;
 		this.vx += this.ax;
 		this.vy += this.ay;
+		this.vx *= this.f;
+		this.vy *= this.f;
 		this.x  += this.vx;
 		this.y  += this.vy;
 	},
