@@ -8,8 +8,8 @@ var Pong = Koi.define({
         this.canvas  = document.getElementsByTagName('canvas')[0];
 		this.ctx = this.canvas.getContext('2d');
 				this.paddles = {
-					'left'  : new Paddle({x: 25 , y:20, h: 75, w: 25, name: 'left' }),
-					'right' : new Paddle({x: 250, y:20, h: 75, w: 25, name: 'right' }),
+					'left'  : new Paddle({x: 25 , y:122, h: 45, w: 10, name: 'left' }),
+					'right' : new Paddle({x: 475, y:122, h: 45, w: 10, name: 'right' }),
 				}
 				this.paddles['left'].draw();
 				this.paddles['right'].draw();
