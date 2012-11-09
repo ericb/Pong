@@ -34,12 +34,12 @@ var Pong = Koi.define({
     
     registerEvents: function() {
         var _this = this;
-        document.onkeypress = this.bind(this.handleKeyboardEvent);
+        document.onkeydown = this.bind(this.handleKeyboardEvent);
     },
     
     handleKeyboardEvent: function(e) {
         
-        console.log(e);
+        console.log(e.keyCode);
         switch(e.keyCode) {
             case 13: // enter key
                 if(this.paused) { 
