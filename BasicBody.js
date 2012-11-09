@@ -21,9 +21,12 @@ var BasicBody = Koi.define({
 		this.canvas   = options.canvas  || defaultCanvas;
 		this.ctx      = options.ctx     || defaultContext;
 		this.name     = options.name    || 'Unnamed Drawable';
-		this.y = options.y   || 0;
+		this.y  = options.y  || 0;
 		this.ay = options.ay || 0;
 		this.vy = options.vy || 0;
+		this.x  = options.x  || 0;
+		this.ax = options.ax || 0;
+		this.vx = options.vx || 0;
 	},
 
 	setAccel: function(ax, ay){
@@ -34,6 +37,11 @@ var BasicBody = Koi.define({
 	setSpeed: function(vx, vy){
 		this.vx = vx;
 		this.vy = vy;
+	},
+
+	setPosition: function(x, y){
+		this.x = x;
+		this.y = y;
 	},
 
 	move: function(){
@@ -55,6 +63,5 @@ var BasicBody = Koi.define({
 		c.font = '12px';
 		c.fillText(this.name, x, y + 12);
 		c.restore();
-		this.isDrawn = true;
 	}
 });
