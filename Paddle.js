@@ -4,7 +4,6 @@ var Paddle = Koi.extend(BasicBody, {
 		this.ctx.save();
 		this.ctx.fillStyle = 'black';
 		this.ctx.fillRect(this.x, this.y, this.w, this.h);
-		this.ctx.restore();
-		console.log(this);		
+		this.ctx.restore();	
 	}
 });

@@ -5,6 +5,8 @@ var Pong = Koi.define({
     paddles: {},   // whether or not the game is paused
     
     init: function() {
+        this.canvas  = document.getElementsByTagName('canvas')[0];
+		this.ctx = this.canvas.getContext('2d');
 				this.paddles = {
 					'left'  : new Paddle({x: 25 , y:20, h: 75, w: 25, name: 'left' }),
 					'right' : new Paddle({x: 250, y:20, h: 75, w: 25, name: 'right' }),
@@ -22,7 +24,7 @@ var Pong = Koi.define({
     
     resume: function() {
         this.paused = false;
-        this.timer = window.setInterval(this.gameLoop, 30);
+        this.timer = window.setInterval(this.bind(this.gameLoop), 30);
     },
     
     bind: function(func) {
@@ -51,10 +53,12 @@ var Pong = Koi.define({
             
             case 37: // left key
                 console.log('left');
+                this.paddles.left.y -= 1;
                 break;
                 
             case 39: // right key
                 console.log('right');
+                this.paddles.left.y += 1;
                 break;
                 
             default: 
@@ -72,10 +76,11 @@ var Pong = Koi.define({
     },
     
     gameLoop: function() {
+            this.ctx.clearRect(0,0, canvas.width, canvas.height);
 			for(var i in this.paddles){
 				this.paddles[i].draw();
 			}
-			console.log('game timer');
+			console.log('game timer', this.paddles.left.x);
     }
 });
 
