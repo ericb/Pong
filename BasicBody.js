@@ -33,8 +33,8 @@ var BasicBody = Koi.define({
 		this.x  	= options.x  || 0;
 		this.ax 	= options.ax || 0;
 		this.vx 	= options.vx || 0;
-		this.k  	= options.k  || .8;
-		this.f  	= options.f  || .8;
+		this.k  	= options.k  || .93;
+		this.f  	= options.f  || .6;
 	},
 
 	setAccel: function(ax, ay){

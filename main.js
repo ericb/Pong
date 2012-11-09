@@ -54,14 +54,14 @@ var Pong = Koi.define({
             case 38: // up key
             case 37: // left key
                 //console.log('left');
-                this.paddles.left.setAccel(0, -4);
+                this.paddles.left.setAccel(0, -5);
                 //console.log(this.paddles.left.vx);
                 break;
                 
             case 40: // down key
             case 39: // right key
                 //console.log('right');
-                this.paddles.left.setAccel(0, 4);
+                this.paddles.left.setAccel(0, 5);
                 break;
                 
             default: 
