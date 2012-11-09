@@ -1,14 +1,14 @@
 var BasicBody = Koi.define({
 	ctx: 	   null,
-	canvas:    false,
+	canvas:    null,
 	name:      null,
-	x:  0, // position
-	y:  0,
-	vx: 0, // velocity
-	vy: 0,
-	ax: 0, // acceleration
-	ay: 0,
-	k:  1, // dampening
+	x:  null, // position
+	y:  null,
+	vx: null, // velocity
+	vy: null,
+	ax: null, // acceleration
+	ay: null,
+	k:  null, // dampening
   
 	init: function(options) {
 		options       = options 	  || {};
@@ -18,15 +18,16 @@ var BasicBody = Koi.define({
 		  var defaultContext = defaultCanvas.getContext('2d');
 		}
 
-		this.canvas   = options.canvas  || defaultCanvas;
-		this.ctx      = options.ctx     || defaultContext;
-		this.name     = options.name    || 'Unnamed Drawable';
-		this.y  = options.y  || 0;
-		this.ay = options.ay || 0;
-		this.vy = options.vy || 0;
-		this.x  = options.x  || 0;
-		this.ax = options.ax || 0;
-		this.vx = options.vx || 0;
+		this.canvas = options.canvas  || defaultCanvas;
+		this.ctx    = options.ctx     || defaultContext;
+		this.name   = options.name    || 'Unnamed Drawable';
+		this.y  	= options.y  || 0;
+		this.ay 	= options.ay || 0;
+		this.vy 	= options.vy || 0;
+		this.x  	= options.x  || 0;
+		this.ax 	= options.ax || 0;
+		this.vx 	= options.vx || 0;
+		this.k  	= options.k  || 0;
 	},
 
 	setAccel: function(ax, ay){
@@ -45,8 +46,8 @@ var BasicBody = Koi.define({
 	},
 
 	move: function(){
-		this.ax *= this.damp;
-		this.ay *= this.damp;
+		this.ax *= this.k;
+		this.ay *= this.k;
 		this.vx += this.ax;
 		this.vy += this.ay;
 		this.x  += this.vx;
