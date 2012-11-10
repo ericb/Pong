@@ -14,8 +14,7 @@ var Pong = Koi.define({
 					'left'  : new Paddle({x: 25 , y:122, h: 45, w: 10, name: 'left' }),
 					'right' : new Paddle({x: 465, y:122, h: 45, w: 10, name: 'right' }),
 				}
-				this.paddles['left'].draw();
-				this.paddles['right'].draw();
+				this.ball = new Ball({ x: 250, y: 150, r: 10, k: 1, f: 1});
 				this.bx     = {};
         		this.bx.min = 0;
         		this.bx.max = this.canvas.width;
@@ -66,6 +65,12 @@ var Pong = Koi.define({
         var prevent = false;
         
         switch(e.keyCode) {
+
+            case 66: // b - random ball start
+                this.ball.setPosition( this.bx.max / 2, this.by.max / 2 );
+                this.ball.setSpeed( Math.random() * 10 - 5, Math.random() * 10 - 5);
+                break;
+
             case 13: // enter key
                 if(this.paused) { 
                     this.resume();
@@ -110,6 +115,7 @@ var Pong = Koi.define({
 			for(var i in this.paddles){
 				this.paddles[i].draw();
 			}
+			this.ball.draw();
 			this.draw_fps();
     }
 });

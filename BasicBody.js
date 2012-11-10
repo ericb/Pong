@@ -27,6 +27,7 @@ var BasicBody = Koi.define({
 		this.canvas = options.canvas  || defaultCanvas;
 		this.ctx    = options.ctx     || defaultContext;
 		this.name   = options.name    || 'Unnamed Drawable';
+		this.r  	= options.r  || 0;
 		this.h  	= options.h  || 0;
 		this.w  	= options.w  || 0;
 		this.y  	= options.y  || 0;
