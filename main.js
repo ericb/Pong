@@ -7,7 +7,7 @@ var Pong = Koi.define({
     paddles: {},     // whether or not the game is paused
     
     init: function() {
-        this.fps        = 0;
+        this.fps     = 0;
         this.canvas  = document.getElementsByTagName('canvas')[0];
 		this.ctx = this.canvas.getContext('2d');
 				this.paddles = {
@@ -22,6 +22,7 @@ var Pong = Koi.define({
         		this.by     = {};
         		this.by.min = 0;
         		this.by.max = this.canvas.height;
+        this.ball = new Ball({ x: 25, y: 25 });
         this.registerEvents();
         this.resume();
     },
