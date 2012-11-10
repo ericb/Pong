@@ -1,18 +1,28 @@
 var Pong = Koi.define({
-    canvas: null,  // the canvas element
-    timer:  null,  // the interval timer
-    paused: false, // whether or not the game is paused
-    paddles: {},   // whether or not the game is paused
+    canvas: null,    // the canvas element
+    fps:    null,    // frames per second
+    lastUpdate: null,  // last known fps
+    timer:  null,    // the interval timer
+    paused: false,   // whether or not the game is paused
+    paddles: {},     // whether or not the game is paused
     
     init: function() {
+        this.fps        = 0;
         this.canvas  = document.getElementsByTagName('canvas')[0];
 		this.ctx = this.canvas.getContext('2d');
 				this.paddles = {
 					'left'  : new Paddle({x: 25 , y:122, h: 45, w: 10, name: 'left' }),
-					'right' : new Paddle({x: 475, y:122, h: 45, w: 10, name: 'right' }),
+					'right' : new Paddle({x: 465, y:122, h: 45, w: 10, name: 'right' }),
 				}
 				this.paddles['left'].draw();
 				this.paddles['right'].draw();
+				this.bx     = {};
+        		this.bx.min = 0;
+        		this.bx.max = this.canvas.width;
+
+        		this.by     = {};
+        		this.by.min = 0;
+        		this.by.max = this.canvas.height;
         this.registerEvents();
         this.resume();
     },
@@ -24,7 +34,7 @@ var Pong = Koi.define({
     
     resume: function() {
         this.paused = false;
-        this.timer = window.setInterval(this.bind(this.gameLoop), 30);
+        this.timer = window.setInterval(this.bind(this.gameLoop), 16);
     },
     
     bind: function(func) {
@@ -84,12 +94,23 @@ var Pong = Koi.define({
         
     },
     
+    draw_fps: function() {
+        var update = new Date().getTime();
+        var fps    = (1000 / (update - this.lastUpdate));
+        this.fps  += (fps - this.fps) / 30;
+        this.lastUpdate = new Date().getTime();
+        this.ctx.font      = "bold 11px Verdana";
+        this.ctx.fillStyle = "#90a5b8";
+        var fps_width = this.ctx.measureText('FPS: ' + this.fps.toFixed(0));
+        this.ctx.fillText("FPS: " + this.fps.toFixed(0), ((this.bx.max / 2) - (fps_width.width / 2)), 20 );
+    },
+    
     gameLoop: function() {
             this.ctx.clearRect(0,0, canvas.width, canvas.height);
 			for(var i in this.paddles){
 				this.paddles[i].draw();
 			}
-			//console.log('game timer', this.paddles.left.x);
+			this.draw_fps();
     }
 });
 
