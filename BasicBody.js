@@ -15,6 +15,7 @@ var BasicBody = Koi.define({
 	f:  null, // friction
     bx: null, // canvas boundaries
     by: null,
+    game: null, // the game instance
     
 	init: function(options) {
 		options       = options 	  || {};
@@ -41,6 +42,7 @@ var BasicBody = Koi.define({
 		this.bx     = {};
 		this.bx.min = 0;
 		this.bx.max = this.canvas.width;
+		this.game   = options.game || false;
 		
 		this.by     = {};
 		this.by.min = 0;
